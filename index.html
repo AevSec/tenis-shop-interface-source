@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ralzito</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f2;
+            color: #171816;
+        }
+
+        header {
+            background: #171816
+            color: white;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        header h1 span {
+            color: #d7ff45;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .hero {
+            background: #20221e;
+            color: white;
+            padding: 100px 8%;
+        }
+
+        .hero h2 {
+            font-size: 60px;
+            max-width: 500px;
+        }
+
+        .hero p {
+            color: #bbb;
+            margin: 20px 0;
+        }
+
+        .hero button {
+            background: #d7ff45;
+            border: none;
+            padding: 15px 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .products {
+            padding: 70px 8%;
+        }
+
+        .products h2 {
+            font-size: 35px;
+            margin-button: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .product img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .product h3 {
+            margin: 15px 0 8px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #78951b;
+        }
+
+        .product button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: #171816;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background: #a7c832;
+            color: black;
+        }
+
+        footer {
+            background: #171816;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media(max-width: 800pc) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media(max-width: 500px) {
+            nav {
+                display: none;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Ralzito<span>Pro</span></h1>
+
+        <nav>
+            <a href="#">Início</a>
+            <a href="#tenis">Tênis</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Vai no seu <span>Ritmo.</span></h2>
+
+        <p>
+            Encontre seu estilo.
+            Descrubra os melhores Tênis para você.
+        </p>
+
+        <button onclick="document.getElementById('tenis').scrollIntoView()">
+            Ver coleção
+        </button>
+    </section>
+
+    <section class="products" id="tenis">
+
+        <h2>Nossos Tênis.</h2>
+
+        <div class="grid" id="productGrid"></div>
+
+    </section>
+
+    <footer id="contato">
+        <h2>Ralzito</h2>
+        <p>© 2026 Ralzito - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const tenis = [
+            {
+                nome: "Air Motion",
+                preco: 349.90,
+                imagem: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+            },
+            {
+                nome: "Urban Runner",
+                preco: 429.90,
+                imagem: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=600"
+            },
+            {
+                nome: "Nike",
+                preco: 289.90,
+                imagem: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600"
+            },
+            {
+                nome: "Court Legend",
+                preco: 499.90,
+                imagem: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600"
+            },
+        ];
+
+        const grid = document.getElementById("productGrid");
+
+        tenis.forEach((tenis, index) => {
+
+            grid.innerHTML += `
+                <div class="product">
+
+                    <img src="${tenis.imagem}" alt="${tenis.nome}">
+
+                    <h3>${tenis.nome}</h3>
+
+                    <p class="price">
+                        R$ ${tenis.preco.toFixed(2).replace(".", ",")}
+                    </p>
+
+                    <button onclick="comprar(${index})">
+                        Comprar agora
+                    </button>
+
+                </div>
+            `;
+
+        });
+
+        function comprar(index) {
+            const produto = tenis[index];
+
+            alert(
+                "Voce selecionou: " + produto.nome +
+                "\\nPreço: R$ " + produto.preco.toFixed(2)
+            );
+        }
+    </script>
+    
+</body>
+</html>
